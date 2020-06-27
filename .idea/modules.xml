@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/poll-app-docker-compose.iml" filepath="$PROJECT_DIR$/.idea/poll-app-docker-compose.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/practica13app.iml" filepath="$PROJECT_DIR$/.idea/modules/practica13app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/practica13app_main.iml" filepath="$PROJECT_DIR$/.idea/modules/practica13app_main.iml" group="practica13app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/practica13app_test.iml" filepath="$PROJECT_DIR$/.idea/modules/practica13app_test.iml" group="practica13app" />
     </modules>
   </component>
 </project>
