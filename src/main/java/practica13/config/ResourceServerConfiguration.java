@@ -39,23 +39,23 @@ public class ResourceServerConfiguration extends WebSecurityConfigurerAdapter {
         //Marcando las reglas para permitir unicamente los usuarios
         http
                 .authorizeRequests()
-                .antMatchers("/assets/**", "/javascripts/**",  "/img/**").hasAnyRole("Participante", "ADMIN") //permitiendo llamadas a esas urls.
-                .antMatchers("/h2/**").hasAnyRole("Participante", "ADMIN")
+                .antMatchers("/assets/**", "/javascripts/**",  "/img/**").permitAll()
+                .antMatchers("/h2/**").permitAll()
                 .antMatchers("/").hasAnyRole("Participante", "ADMIN")// ("ADMIN","Participante")
                 .antMatchers("/encuestas/**").hasAnyRole("Participante", "ADMIN")
                 .and()
                 .formLogin()
-                .loginPage("/login") //indicando la ruta que estaremos utilizando.
-                .failureUrl("/login?error") //en caso de fallar puedo indicar otra pagina.
-                .defaultSuccessUrl("/")
-                .permitAll()
+                    .loginPage("/login") //indicando la ruta que estaremos utilizando.
+                    .failureUrl("/login?error") //en caso de fallar puedo indicar otra pagina.
+                    .defaultSuccessUrl("/")
+                    .permitAll()
                 .and()
                 .exceptionHandling().accessDeniedPage("/login")
                 .and()
                 .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login")
-                .permitAll();
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/login")
+                    .permitAll();
 
         //deshabilitando las seguridad contra los frame internos.
         //Necesario para H2.

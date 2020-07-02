@@ -17,7 +17,7 @@ import practica13.Services.SecurityService;
 import java.util.List;
 
 @Service("usuarioService")
-public class UsuarioServiceImpl implements UsuarioService, SecurityService {
+public class UsuarioServiceImpl implements UsuarioService,  SecurityService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -48,12 +48,12 @@ public class UsuarioServiceImpl implements UsuarioService, SecurityService {
         if (userDetails instanceof UserDetails) {
             return ((UserDetails)userDetails).getUsername();
         }
-
         return null;
     }
 
     public void autoLogin(String username, String password) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        System.out.println("loaded user: " + userDetails.getUsername() + " " + userDetails.getPassword());
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                 new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
 

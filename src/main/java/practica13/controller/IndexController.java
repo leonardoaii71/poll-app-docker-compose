@@ -2,6 +2,9 @@ package practica13.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,12 +38,11 @@ public class IndexController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model, Locale locale, HttpServletRequest request)
     {
+
         List<Encuesta> encuestas = encuestaService.listarEncuestas();
         model.addAttribute("encuestas",encuestas);
         model.addAttribute("puerto", ""+request.getLocalPort());
-        //  model.addAttribute("saludo", messageSource.getMessage("saludo", null, locale));
 
-        // model.addAttribute("derecho_autor", messageSource.getMessage("derecho_autor", null, locale));
         return "index";
     }
 
@@ -61,20 +63,22 @@ public class IndexController {
             usuarioService.crearUsuario(new Usuario("admin", "admin", "admin@gmail.com", true, adminrol, 1));
             //Creando Participante por Default
             usuarioService.crearUsuario(new Usuario("joelant97", "1234", "joelant97@hotmail.com", false, participanterol, 1));
+
         }
-        System.out.println();
+
+        System.out.println("usuario logged in: " + usuarioService.usuarioLogueado());
         return "login";
     }
 
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPOST(
-            @RequestParam(value = "username", required = false) String username,
-            @RequestParam(value = "password", required = false) String password
+            @RequestParam(value = "username") String username,
+            @RequestParam(value = "password") String password
     ) {
         usuarioService.autoLogin(username, password);
 
-        return "redirect:/";
+        return "index";
     }
 
 
