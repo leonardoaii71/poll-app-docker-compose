@@ -57,13 +57,13 @@ public class IndexController {
             adminrol = rolService.crearRol(adminrol);
 
             Rol participanterol = new Rol();
-            participanterol.setNombreRol("Participante");
+            participanterol.setNombreRol("PARTICIPANTE");
             Rol r = rolService.crearRol(participanterol);
             System.out.println(r + "creado");
 
             usuarioService.crearUsuario(new Usuario("admin", "admin", "admin@gmail.com", true, adminrol, 1));
             //Creando Participante por Default
-            usuarioService.crearUsuario(new Usuario("joelant97", "1234", "joelant97@hotmail.com", false, participanterol, 1));
+            usuarioService.crearUsuario(new Usuario("participante", "participante", "joelant97@hotmail.com", false, participanterol, 1));
             System.out.println("users created");
         }
         return "login";
