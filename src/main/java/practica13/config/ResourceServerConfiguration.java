@@ -21,8 +21,7 @@ public class ResourceServerConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public UserDetailsService userDetailsService;
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Autowired
     private DataSource dataSource;
 
@@ -41,8 +40,10 @@ public class ResourceServerConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/assets/**", "/javascripts/**",  "/img/**").permitAll()
                 .antMatchers("/h2/**").permitAll()
-                .antMatchers("/").hasAnyRole("Participante", "ADMIN")// ("ADMIN","Participante")
-                .antMatchers("/encuestas/**").hasAnyRole("Participante", "ADMIN")
+                .antMatchers("/").permitAll()
+                .antMatchers("/encuestas/**").hasAnyRole( "ADMIN")
+                .and()
+                .httpBasic()
                 .and()
                 .formLogin()
                     .loginPage("/login") //indicando la ruta que estaremos utilizando.

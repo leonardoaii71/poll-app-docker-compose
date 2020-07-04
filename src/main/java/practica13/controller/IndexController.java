@@ -29,6 +29,7 @@ public class IndexController {
 
     @Autowired
     private EncuestaService encuestaService;
+
     @Autowired
     private RolServiceImpl rolService;
 
@@ -63,23 +64,9 @@ public class IndexController {
             usuarioService.crearUsuario(new Usuario("admin", "admin", "admin@gmail.com", true, adminrol, 1));
             //Creando Participante por Default
             usuarioService.crearUsuario(new Usuario("joelant97", "1234", "joelant97@hotmail.com", false, participanterol, 1));
-
+            System.out.println("users created");
         }
-
-        System.out.println("usuario logged in: " + usuarioService.usuarioLogueado());
         return "login";
     }
-
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginPOST(
-            @RequestParam(value = "username") String username,
-            @RequestParam(value = "password") String password
-    ) {
-        usuarioService.autoLogin(username, password);
-
-        return "index";
-    }
-
 
 }
