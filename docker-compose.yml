@@ -2,78 +2,31 @@ version: '3'
 
 services:
 
-  spring:
-    image: leonardoaii71/spring:final
-    ports:
-      - 8080
-    environment:
-      - SERVICE_PORTS=8080
-      - SERVER_PORT=8080
+  app:
+    image: leonardoaii71/poll-app:beta
     networks:
       - web
-      - db
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
     depends_on:
       - mysqldb
-      - redis
-    deploy:
-      replicas: 2
-
-  redis:
-    image: redis
-    hostname: redis
-    networks:
-      - web
-    ports:
-      - 6379:6379
-
-  haproxy:
-    image: dockercloud/haproxy:latest
-    depends_on:
-      - spring
-      - spring2
-    environment:
-      - BALANCE=roundrobin
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    ports:
-      - 80:80
-      - 1936:1936
-      - 443:443
-    networks:
-      - web
-    deploy:
-      placement:
-        constraints: [node.role == manager]
+    restart: "no"
 
   mysqldb:
-    image: mysql
-    networks:
-      - db
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=polls
-    ports:
-      - 3306:3306
-    volumes:
-      - mysql_db:/var/lib/mysql
-
-  visualizer:
-    image: dockersamples/visualizer:stable
-    ports:
-      - "8080:8080"
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-    deploy:
-      placement:
-        constraints: [node.role == manager]
     networks:
       - web
-
-volumes:
-  mysql_db:
+    ports:
+      - 3306:3306
+    restart: always
 
 networks:
   web:
-    driver: overlay
-  db:
-

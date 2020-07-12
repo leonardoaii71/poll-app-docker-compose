@@ -1,2 +1,4 @@
 Manifest-Version: 1.0
+Start-Class: practica13.Practica13App
+Main-Class: org.springframework.boot.loader.JarLauncher
 
