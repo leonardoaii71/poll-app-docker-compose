@@ -81,12 +81,12 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="form-group mt-lg">
-									<label class="col-sm-3 form-control-label">encuesta</label>
+									<label class="col-sm-3 form-control-label">Encuesta</label>
 									<div class="col-sm-9">
 										<select id="encuesta" name="encuesta" class="form-control"
 												style="width: 100%;" tabindex="-1" aria-hidden="true"
 												required>
-											<option selected="selected">Seleccionar Encuesta</option>
+											<option selected="selected">Selecionar Encuesta</option>
 											<#list encuestas as encuesta>
 												<option value="${encuesta.getId()}">${encuesta.getComentario()} </option>
 											</#list>
@@ -158,10 +158,10 @@
 <script src="assets/javascripts/ui-elements/examples.charts.js"></script>
 <script>
 
-	$("#categoria").change(function() {
-		var categoria = $(this).val();
+	$("#encuesta").change(function() {
+		var encuesta = $(this).val();
 		$.ajax({
-			url: '/alquileres/famaverage/'+categoria,
+			url: '/encuestas/famaverage/'+encuesta,
 			type: 'GET',
 			success: function(response) {
 				var plot = $.plot('#flotBars', [response], {

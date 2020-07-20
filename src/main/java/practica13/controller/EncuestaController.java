@@ -2,6 +2,7 @@ package practica13.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -110,4 +111,12 @@ public class EncuestaController {
         encuestaService.borrarEncuesta(encuesta);
         return "redirect:/encuestas/";
     }
+
+    @GetMapping(value = "/famaverage/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Encuesta encuestaAverage(@PathVariable String id){
+        Encuesta avg = encuestaService.promedioCumplieronExpectativas(Long.parseLong(id));
+        return avg;
+    }
+
 }

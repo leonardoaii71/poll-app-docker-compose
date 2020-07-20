@@ -111,6 +111,7 @@
                         </form>
 
                     </div>
+
                     <table class="table table-bordered table-striped mb-none" id="datatable-editable">
                         <thead>
                         <tr>
@@ -125,7 +126,7 @@
                                         <td class="actions">
                                             <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                             <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                            <a href="#edit-form" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                            <a href="#edit-encuesta-form" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
                                         </td>
                                     </tr>
                                     </#list>
@@ -167,4 +168,10 @@
 <script src="/assets/javascripts/tables/examples.datatables.editable.js"></script>
 <script src="/assets/javascripts/ui-elements/examples.lightbox.js"></script>
 </body>
+
+
+
 </html>
+
+
+

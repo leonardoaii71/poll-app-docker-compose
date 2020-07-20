@@ -28,6 +28,10 @@ public class EncuestaService {
         return encuestaRepo.findEncuestaById(id);
     }
 
+    public Encuesta promedioCumplieronExpectativas(long id){
+        return encuestaRepo.findEncuestaByCumplieronExpectativas(id);
+    }
+
     public void eliminarEncuesta(long id){
 
         Encuesta encuestaToDelete = encuestaRepo.findEncuestaById(id);

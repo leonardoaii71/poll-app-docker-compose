@@ -4,7 +4,7 @@
 	<body>
 		<!-- start: page -->
 		<section class="body-sign">
-			<div class="center-sign"
+			<div class="center-sign">
 				<div class="panel panel-sign">
 					<#if error??>
 						<span> ${error} </span>
@@ -14,7 +14,7 @@
 						<h2 class="title text-uppercase text-bold m-none"><i class="fa fa-user mr-xs"></i> Sign In</h2>
 					</div>
 					<div class="panel-body">
-						<form action="/login" method="post">
+						<form action="/login" method="POST">
 							<div class="form-group mb-lg">
 								<label>Username</label>
 								<div class="input-group input-group-icon">
@@ -51,17 +51,8 @@
 								</div>
 								<div class="col-sm-4 text-right">
 									<button type="submit" class="btn btn-primary hidden-xs">Sign In</button>
-									<button type="submit" class="btn btn-primary btn-block btn-lg visible-xs mt-lg">Sign In</button>
+
 								</div>
-							</div>
-
-							<span class="mt-lg mb-lg line-thru text-center text-uppercase">
-								<span>or</span>
-							</span>
-
-							<div class="mb-xs text-center">
-								<a class="btn btn-facebook mb-md ml-xs mr-xs">Connect with <i class="fa fa-facebook"></i></a>
-								<a class="btn btn-twitter mb-md ml-xs mr-xs">Connect with <i class="fa fa-twitter"></i></a>
 							</div>
 
 							<p class="text-center">Don't have an account yet? <a href="pages-signup.html">Sign Up!</a>
@@ -81,13 +72,13 @@
 		<script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 		<script src="assets/vendor/magnific-popup/magnific-popup.js"></script>
 		<script src="assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
-		
+
 		<!-- Theme Base, Components and Settings -->
 		<script src="assets/javascripts/theme.js"></script>
-		
+
 		<!-- Theme Custom -->
 		<script src="assets/javascripts/theme.custom.js"></script>
-		
+
 		<!-- Theme Initialization Files -->
 		<script src="assets/javascripts/theme.init.js"></script>
 
