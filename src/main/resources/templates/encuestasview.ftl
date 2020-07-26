@@ -114,6 +114,7 @@
                     <table class="table table-bordered table-striped mb-none" id="datatable-editable">
                         <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Nombre</th>
                             <th>Acciones</th>
                         </tr>
@@ -121,6 +122,7 @@
                         <tbody>
 									<#list encuestas as encuesta>
                                     <tr class="gradeX">
+                                        <td>${encuesta.getId()}</td>
                                         <td>${encuesta.getComentario()}</td>
                                         <td class="actions">
                                             <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>

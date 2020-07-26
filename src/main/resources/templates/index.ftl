@@ -158,47 +158,55 @@
 <script src="assets/javascripts/ui-elements/examples.charts.js"></script>
 <script>
 
-	$("#categoria").change(function() {
-		var categoria = $(this).val();
-		$.ajax({
-			url: '/alquileres/famaverage/'+categoria,
-			type: 'GET',
-			success: function(response) {
-				var plot = $.plot('#flotBars', [response], {
-					colors: ['#8CC9E8'],
-					series: {
-						bars: {
-							show: true,
-							barWidth: 0.8,
-							align: 'center'
-						}
-					},
-					xaxis: {
-						mode: 'categories',
-						tickLength: 0
-					},
-					grid: {
-						hoverable: true,
-						clickable: true,
-						borderColor: 'rgba(0,0,0,0.1)',
-						borderWidth: 1,
-						labelMargin: 15,
-						backgroundColor: 'transparent'
-					},
-					tooltip: true,
-					tooltipOpts: {
-						content: '%y',
-						shifts: {
-							x: -10,
-							y: 20
-						},
-						defaultTheme: false
-					}
-				});
+	var options = {
+		colors: ['#8CC9E8'],
+		series: {
+			bars: {
+				show: true,
+				barWidth: 0.8,
+				align: 'center'
 			}
+		},
+		xaxis: {
+			mode: 'categories',
+			tickLength: 0
+		},
+		grid: {
+			hoverable: true,
+			clickable: true,
+			borderColor: 'rgba(0,0,0,0.1)',
+			borderWidth: 1,
+			labelMargin: 15,
+			backgroundColor: 'transparent'
+		},
+		tooltip: true,
+		tooltipOpts: {
+			content: '%y',
+			shifts: {
+				x: -10,
+				y: 20
+			},
+			defaultTheme: false
+		}
+	};
 
-		});
-	});
+
+    $("#encuesta").change(function() {
+        var id = $(this).val();
+        $.getJSON( '/encuestas/data/'+id+'/', {
+        })
+            .done(function( data ) {
+                var serie = [];
+                for(prop in data){
+                    serie.push([prop, data[prop]])
+                }
+                var plot = $.plot('#flotBars', [serie.slice(1)], options);
+            })
+            .fail(function(jqXHR, textStatus, errorThrown ) {
+                console.log(textStatus + errorThrown);
+            })
+        });
+
 
 </script>
 

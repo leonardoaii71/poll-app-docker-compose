@@ -2,6 +2,7 @@ package practica13.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import practica13.Models.Encuesta;
+import practica13.Models.EncuestaResponse;
 import practica13.Models.Usuario;
 import practica13.Services.EncuestaService;
 import practica13.Services.UsuarioService;
@@ -48,9 +50,9 @@ public class EncuestaController {
     }
 
     @PostMapping("/crear/")
-    public String crearEncuesta(@RequestParam("cumplieronExpectativas") String cumplieronExpectativas,
-                              @RequestParam("dominioDelTema") String dominioDelTema,
-                              @RequestParam("instalacionesConfortables") String instalacionesConfortables,
+    public String crearEncuesta(@RequestParam("cumplieronExpectativas") int cumplieronExpectativas,
+                              @RequestParam("dominioDelTema") int dominioDelTema,
+                              @RequestParam("instalacionesConfortables") int instalacionesConfortables,
                               @RequestParam("comentario") String comentario,
                               RedirectAttributes redirectAttributes) {
         Encuesta encuesta = new Encuesta();
@@ -71,7 +73,7 @@ public class EncuestaController {
         return "verencuesta";
     }
 
-    @GetMapping("/{id}/")
+    @GetMapping(value = "/data/{id}/", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Encuesta postResponseController(@PathVariable Long id ) {
         Encuesta encuesta;
@@ -79,7 +81,6 @@ public class EncuestaController {
             encuesta = encuestaService.encontrarEncuestaPorId(id);
         }
         catch (Exception e){
-
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "entity not found");
         }
 
@@ -88,9 +89,9 @@ public class EncuestaController {
 
     @PostMapping("/modificar/")
     public String modificarEncuesta(@RequestParam("id2") String id,
-                                    @RequestParam("cumplieronExpectativas2") String cumplieronExpectativas,
-                                    @RequestParam("dominioDelTema2") String dominioDelTema,
-                                    @RequestParam("instalacionesConfortables2") String instalacionesConfortables,
+                                    @RequestParam("cumplieronExpectativas2") int cumplieronExpectativas,
+                                    @RequestParam("dominioDelTema2") int dominioDelTema,
+                                    @RequestParam("instalacionesConfortables2") int instalacionesConfortables,
                                     @RequestParam("comentario2") String comentario,
                                     RedirectAttributes redirectAttributes) {
 

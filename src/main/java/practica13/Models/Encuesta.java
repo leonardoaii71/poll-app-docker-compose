@@ -11,20 +11,20 @@ public class Encuesta {
     @GeneratedValue
     private Long id;
 
-    private String cumplieronExpectativas;
-    private String dominioDelTema;
-    private String instalacionesConfortables;
+    private int cumplieronExpectativas;
+    private int dominioDelTema;
+    private int instalacionesConfortables;
     private String comentario;
 
 
-    public Encuesta(String cumplieronExpectativas, String dominioDelTema, String instalacionesConfortables, String comentario) {
+    public Encuesta(int cumplieronExpectativas, int dominioDelTema, int instalacionesConfortables, String comentario) {
         this.cumplieronExpectativas = cumplieronExpectativas;
         this.dominioDelTema = dominioDelTema;
         this.instalacionesConfortables = instalacionesConfortables;
         this.comentario = comentario;
     }
+    public Encuesta(){
 
-    public Encuesta() {
     }
 
     public Long getId() {
@@ -35,27 +35,27 @@ public class Encuesta {
         this.id = id;
     }
 
-    public String getCumplieronExpectativas() {
+    public int getCumplieronExpectativas() {
         return cumplieronExpectativas;
     }
 
-    public void setCumplieronExpectativas(String cumplieronExpectativas) {
+    public void setCumplieronExpectativas(int cumplieronExpectativas) {
         this.cumplieronExpectativas = cumplieronExpectativas;
     }
 
-    public String getDominioDelTema() {
+    public int getDominioDelTema() {
         return dominioDelTema;
     }
 
-    public void setDominioDelTema(String dominioDelTema) {
+    public void setDominioDelTema(int dominioDelTema) {
         this.dominioDelTema = dominioDelTema;
     }
 
-    public String getInstalacionesConfortables() {
+    public int getInstalacionesConfortables() {
         return instalacionesConfortables;
     }
 
-    public void setInstalacionesConfortables(String instalacionesConfortables) {
+    public void setInstalacionesConfortables(int instalacionesConfortables) {
         this.instalacionesConfortables = instalacionesConfortables;
     }
 
